@@ -11,7 +11,6 @@ exports.getUserById = (req, res, next, id) => {
 };
 
 exports.getUser = (req, res) => {
-  //TODO comeback for password
   req.profile.salt = req.profile.encryptedPassword = req.profile.createdAt = req.profile.updatedAt = undefined;
   return res.json(req.profile);
 };
