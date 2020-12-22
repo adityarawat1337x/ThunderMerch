@@ -6,7 +6,12 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+
+// auth routes
 const authRoutes = require("./routes/auth");
+
+// user routes
+const userRoutes = require("./routes/user");
 
 //DATABSE
 mongoose
@@ -29,7 +34,7 @@ app.use(cors());
 
 //ROUTES
 app.use("/api", authRoutes);
-
+app.use("/api", userRoutes);
 //PORT
 const port = process.env.PORT;
 
