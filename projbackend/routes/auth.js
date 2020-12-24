@@ -1,16 +1,8 @@
 const express = require("express");
 
 const router = express.Router();
-const {
-  signup,
-  signout,
-  del,
-  signin,
-  isSignedIn,
-} = require("../controllers/auth");
+const { signup, signout, signin, isSignedIn } = require("../controllers/auth");
 const { check } = require("express-validator");
-
-router.delete("/delete", del);
 
 router.post(
   "/signup",
@@ -18,8 +10,8 @@ router.post(
   [
     check("email").isEmail().withMessage("Not a valid Email"),
     check("password", "Min password length should be 8, Alphanumeric")
-      .isLength({ min: 8 })
-      .isAlphanumeric(),
+      .isAlphanumeric()
+      .isLength({ min: 8 }),
   ],
   // route continue
   signup
@@ -30,8 +22,8 @@ router.post(
   [
     check("email").isEmail().withMessage("Not a valid Email"),
     check("password", "Min password length should be 8, Alphanumeric")
-      .isLength({ min: 8 })
-      .isAlphanumeric(),
+      .isAlphanumeric()
+      .isLength({ min: 8 }),
   ],
   signin
 );
