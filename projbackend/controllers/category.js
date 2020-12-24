@@ -38,7 +38,7 @@ exports.removeCategory = (req, res) => {
       return res.status(400).json({ Error: "No category deleted" });
     }
     return res.json({
-      Error: `Category:${categoryObj} deleted successfully`,
+      Deleted: categoryObj,
     });
   });
 };
