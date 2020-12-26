@@ -15,11 +15,6 @@ let productSchema = new mongoose.Schema(
       required: true,
       maxlength: 1000,
     },
-    description: {
-      type: Number,
-      required: true,
-      trim: true,
-    },
     category: {
       type: ObjectId,
       ref: "Category",

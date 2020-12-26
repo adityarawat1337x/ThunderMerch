@@ -16,6 +16,9 @@ const userRoutes = require("./routes/user");
 // category routes
 const categoryRoutes = require("./routes/category");
 
+// product routes
+const productRoutes = require("./routes/product");
+
 //DATABSE
 mongoose
   .connect(process.env.DATABASE, {
@@ -39,6 +42,7 @@ app.use(cors());
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
+app.use("/api", productRoutes);
 
 //PORT
 const port = process.env.PORT;

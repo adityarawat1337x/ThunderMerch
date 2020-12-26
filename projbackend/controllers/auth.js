@@ -11,7 +11,7 @@ const validator = function (req, res) {
   if (!error.isEmpty()) {
     return res.status(422).json({
       Errors: error.errors.map((error) => {
-        return { Param: error.param, Error: error.msg };
+        return { Error: error.param, Err: error.msg };
       }),
     });
   }
@@ -30,8 +30,8 @@ exports.signup = (req, res) => {
     // error checking
     if (err)
       return res.status(400).json({
-        err: "Not able to save user in db",
-        error: err,
+        Rrror: "Not able to save user in db",
+        Err: err,
       });
     console.log(userObj);
     return res.json(`${userObj.firstname} database created`);
@@ -60,11 +60,13 @@ exports.signin = (req, res) => {
     if (err || !userObj) {
       return res.status(400).json({
         Error: "User email not found",
+        Err: err,
       });
     }
     if (!userObj.authenticate(password)) {
       return res.status(401).json({
         Error: "Wrong Password",
+        Err: err,
       });
     }
 
