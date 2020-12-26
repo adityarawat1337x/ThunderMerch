@@ -174,3 +174,17 @@ exports.getAllProducts = (req, res) => {
       return res.json(productsObj);
     });
 };
+
+// getall unique category
+exports.getAllUniqueCategories = (req, res) => {
+  Product.distinct("category", {}, (err, category) => {
+    if (err || !category) {
+      return res.status(400).json({
+        Error: "Error retrieving categories",
+        err: err,
+        Categories: category,
+      });
+    }
+    return res.json(category);
+  });
+};
