@@ -19,6 +19,9 @@ const categoryRoutes = require("./routes/category");
 // product routes
 const productRoutes = require("./routes/product");
 
+// product routes
+const orderRoutes = require("./routes/order");
+
 //DATABSE
 mongoose
   .connect(process.env.DATABASE, {

@@ -11,8 +11,7 @@ var productInCartSchema = new mongoose.Schema({
   count: Number,
   totalPrice: Number,
 });
-
-module.exports = mongoose.model("ProductCart", productInCartSchema);
+const ProductCart = mongoose.model("ProductCart", productInCartSchema);
 
 var orderSchema = new mongoose.Schema(
   {
@@ -20,7 +19,13 @@ var orderSchema = new mongoose.Schema(
     transaction_id: {},
     amount: { type: Number },
     address: String,
+    status: {
+      type: String,
+      default: "Recieved",
+      enum: ["Cancelled", "Delivered", "Shipped", "Processing", "Recieved"],
+    },
     updated: Date,
+
     user: {
       type: ObjectId,
       ref: "User",
@@ -29,4 +34,6 @@ var orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Order", orderSchema);
+const Order = mongoose.model("Order", orderSchema);
+
+module.exports = { Order, ProductCart };
