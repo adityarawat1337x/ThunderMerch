@@ -27,7 +27,7 @@ router.post(
 );
 
 // all orders of a user route
-routes.get(
+router.get(
   "/order/all/:userId",
   isSignedIn,
   isAuthenticated,
