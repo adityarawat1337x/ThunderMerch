@@ -6,8 +6,8 @@ import { signin, saveToken, checkToken } from "../auth/helper/index";
 function Signin() {
   // state
   const [userData, setuserData] = useState({
-    email: "",
-    password: "",
+    email: "asdw@asdw.asdw",
+    password: "asdwasdw",
     error: "",
     loading: false,
     didRedirect: false,
@@ -26,9 +26,9 @@ function Signin() {
     const user = checkToken();
     if (didRedirect) {
       if (user && user.role === 1) {
-        return <Redirect to="/admin" />;
+        return <Redirect to="/admin/dashboard" />;
       } else {
-        return <Redirect to="/dashboard" />;
+        return <Redirect to="/user/dashboard" />;
       }
     }
     if (checkToken()) {
@@ -55,7 +55,7 @@ function Signin() {
 
   // error message
   const errorMessage = () => {
-    console.log(error);
+    // console.log(error);
 
     return (
       <div className="col-md-4 offset-sm-4 text-left">
