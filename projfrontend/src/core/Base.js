@@ -13,7 +13,9 @@ function Base({
       <Menu />
       <div className="container-fluid">
         <div className="jumbotron bg-dark text-white text-center">
-          <h1 className="pt-5">{title}</h1>
+          <h1 className="pt-5" style={{ color: "#20c8f7" }}>
+            {title}
+          </h1>
           <p className="lead">{description}</p>
         </div>
         <div className={className}>{children}</div>

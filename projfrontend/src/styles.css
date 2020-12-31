@@ -13,3 +13,7 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+.hover:hover {
+  color: #20c8f7;
+}

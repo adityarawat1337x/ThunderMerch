@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import "../styles.css";
 
 function Menu(history) {
   const currentTab = (history, path) => {
@@ -10,10 +11,10 @@ function Menu(history) {
   };
   return (
     <div>
-      <ul className="nav bg-dark nav-tabs justify-content-end border-0 mt-3 mx-3">
+      <ul className="nav bg-dark nav-tabs justify-content-end border-0 mt-3 mx-3 hover">
         <li className="nav-item">
           <Link style={currentTab(history, "/")} className="nav-link" to="/">
-            Home
+            <span className="hover">Home</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -22,7 +23,7 @@ function Menu(history) {
             className="nav-link"
             to="/user/dashboard"
           >
-            Dashboard
+            <span className="hover">Dashboard</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -31,7 +32,7 @@ function Menu(history) {
             className="nav-link"
             to="/cart"
           >
-            Cart
+            <span className="hover">Cart</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -40,7 +41,7 @@ function Menu(history) {
             className="nav-link"
             to="/admin"
           >
-            Admin
+            <span className="hover">Admin</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -49,7 +50,7 @@ function Menu(history) {
             className="nav-link"
             to="/signin"
           >
-            Sign In
+            <span className="hover">Sign in</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -58,7 +59,7 @@ function Menu(history) {
             className="nav-link"
             to="/signout"
           >
-            Sign Out
+            <span className="hover">Sign out</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -67,7 +68,7 @@ function Menu(history) {
             className="nav-link"
             to="/signup"
           >
-            Sign Up
+            <span className="hover">Sign up</span>
           </Link>
         </li>
       </ul>
