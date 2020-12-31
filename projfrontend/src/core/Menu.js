@@ -22,60 +22,66 @@ function Menu(history) {
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link
-            style={currentTab(history, "/user/dashboard")}
-            className="nav-link"
-            to="/user/dashboard"
-          >
-            <span className="hover">Dashboard</span>
-          </Link>
-        </li>
-
         {checkToken() && (
-          <li className="nav-item">
-            <Link
-              style={currentTab(history, "/admin/dashboard")}
-              className="nav-link"
-              to="/admin"
-            >
-              <span className="hover">Admin</span>
-            </Link>
-          </li>
+          <>
+            {!checkToken().user.role && (
+              <li className="nav-item">
+                <Link
+                  style={currentTab(history, "/user/dashboard")}
+                  className="nav-link"
+                  to="/user/dashboard"
+                >
+                  <span className="hover">Dashboard</span>
+                </Link>
+              </li>
+            )}
+
+            {checkToken().user.role && (
+              <li className="nav-item">
+                <Link
+                  style={currentTab(history, "/admin/dashboard")}
+                  className="nav-link"
+                  to="/admin/dashboard"
+                >
+                  <span className="hover">Admin</span>
+                </Link>
+              </li>
+            )}
+
+            <li className="nav-item">
+              <Link className="nav-link" to="#">
+                <span
+                  className="hover"
+                  onClick={() => (signout(), history.history.push("/"))}
+                >
+                  Sign out
+                </span>
+              </Link>
+            </li>
+          </>
         )}
 
         {!checkToken() && (
-          <li className="nav-item">
-            <Link
-              style={currentTab(history, "/signin")}
-              className="nav-link"
-              to="/signin"
-            >
-              <span className="hover">Sign in</span>
-            </Link>
-          </li>
-        )}
-
-        {checkToken() && (
-          <li className="nav-item">
-            <span
-              className="hover nav-link"
-              onClick={() => (signout(), history.history.push("/"))}
-            >
-              Sign out
-            </span>
-          </li>
-        )}
-        {!checkToken() && (
-          <li className="nav-item">
-            <Link
-              style={currentTab(history, "/signup")}
-              className="nav-link"
-              to="/signup"
-            >
-              <span className="hover">Sign up</span>
-            </Link>
-          </li>
+          <>
+            <li className="nav-item">
+              <Link
+                style={currentTab(history, "/signin")}
+                className="nav-link"
+                to="/signin"
+              >
+                <span className="hover">Sign in</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                style={currentTab(history, "/signup")}
+                className="nav-link"
+                to="/signup"
+              >
+                <span className="hover">Sign up</span>
+              </Link>
+            </li>
+          </>
         )}
 
         <li className="nav-item">

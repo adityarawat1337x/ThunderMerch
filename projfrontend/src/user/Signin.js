@@ -32,7 +32,7 @@ function Signin() {
       }
     }
     if (checkToken()) {
-      console.log(user);
+      // console.log(user);
       return <Redirect to="/" />;
     }
   };
