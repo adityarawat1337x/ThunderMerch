@@ -1,4 +1,3 @@
-import { React, localstorage } from "react";
 import { API } from "../../env";
 
 export const signup = (user) => {

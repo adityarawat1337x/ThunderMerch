@@ -3,8 +3,8 @@ import Menu from "./Menu";
 import "../styles.css";
 
 function Base({
-  title = " My Title",
-  description = "My description",
+  title = "Title",
+  description = "Description",
   className = "bg-dark text-white p-4",
   children,
 }) {
@@ -13,9 +13,7 @@ function Base({
       <Menu />
       <div className="container-fluid">
         <div className="jumbotron bg-dark text-white text-center">
-          <h1 className="pt-5" style={{ color: "#20c8f7" }}>
-            {title}
-          </h1>
+          <span className="title">{title}</span>
           <p className="lead">{description}</p>
         </div>
         <div className={className}>{children}</div>
@@ -28,7 +26,10 @@ function Base({
         </div>
         <div className="container">
           <span className="text-muted">
-            Made with love by <span className="text-white">Adi</span>
+            Made in <span style={{ color: "#ff6e00" }}>In</span>
+            <span className="text-white">d</span>
+            <span style={{ color: "#0cff00" }}>ia</span> by
+            <span className="text-info"> Adi</span>
           </span>
         </div>
       </footer>

@@ -25,15 +25,12 @@ function Signin() {
   const performRedirect = () => {
     const user = checkToken();
     if (didRedirect) {
-      if (user && user.role === 1) {
+      console.log("it ran");
+      if (user && user.user.role === 1) {
         return <Redirect to="/admin/dashboard" />;
       } else {
         return <Redirect to="/user/dashboard" />;
       }
-    }
-    if (checkToken()) {
-      // console.log(user);
-      return <Redirect to="/" />;
     }
   };
 
@@ -46,7 +43,7 @@ function Signin() {
             className="alert alert-info"
             style={{ display: loading ? "" : "none" }}
           >
-            Loggin in...
+            Logging in...
           </div>
         </div>
       );
@@ -63,9 +60,7 @@ function Signin() {
           className="alert alert-danger"
           style={{ display: error ? "" : "none" }}
         >
-          {Object.entries(error).map((err, index) => {
-            return <div>{`${index + 1}. ${err[1].Err}`}</div>;
-          })}
+          {error}
         </div>
       </div>
     );
@@ -75,31 +70,35 @@ function Signin() {
   const onSubmit = (e) => {
     e.preventDefault();
     setuserData({ ...userData, error: false, loading: true });
-    signin({ email, password })
-      .then((data) => {
-        if (data.Errors) {
-          setuserData({
-            email: "",
-            password: "",
-            error: data.Errors,
-            loading: false,
-            didRedirect: false,
-          });
-        } else {
-          saveToken(data, () => {
+    setTimeout(() => {
+      // wait for loading for 1 sec
+      signin({ email, password })
+        .then((data) => {
+          if (data.Error) {
             setuserData({
               email: "",
               password: "",
-              error: "",
-              didRedirect: true,
+              error: data.Error,
               loading: false,
+              didRedirect: false,
             });
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+            console.log(userData);
+          } else {
+            saveToken(data, () => {
+              setuserData({
+                email: "",
+                password: "",
+                error: "",
+                didRedirect: true,
+                loading: false,
+              });
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 1000);
   };
 
   // sign in form
@@ -136,10 +135,10 @@ function Signin() {
   return (
     <div>
       <Base title="Sign In" description="">
+        {performRedirect()}
         {loadingMessage()}
         {errorMessage()}
         {signInForm()}
-        {performRedirect()}
       </Base>
     </div>
   );

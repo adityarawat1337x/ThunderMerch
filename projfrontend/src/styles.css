@@ -14,9 +14,16 @@ footer {
   width: 100%;
 }
 
-.hover {
-  color: #fff;
-}
 .hover:hover {
   color: #01afff;
+}
+
+.title:hover {
+  font-size: 48px;
+}
+
+.title {
+  font-size: 38px;
+  color: #20c8f7;
+  transition: font-size 0.2s ease-out;
 }

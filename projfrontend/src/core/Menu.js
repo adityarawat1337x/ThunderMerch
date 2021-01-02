@@ -17,7 +17,11 @@ function Menu(history) {
     <div>
       <ul className="nav bg-dark nav-tabs justify-content-end border-0 mt-3 mx-3 ">
         <li className="nav-item">
-          <Link style={currentTab(history, "/")} className="nav-link" to="/">
+          <Link
+            style={currentTab(history, "/")}
+            className="nav-link border-0"
+            to="/"
+          >
             <span className="hover">Home</span>
           </Link>
         </li>
@@ -28,7 +32,7 @@ function Menu(history) {
               <li className="nav-item">
                 <Link
                   style={currentTab(history, "/user/dashboard")}
-                  className="nav-link"
+                  className="nav-link border-0"
                   to="/user/dashboard"
                 >
                   <span className="hover">Dashboard</span>
@@ -40,22 +44,32 @@ function Menu(history) {
               <li className="nav-item">
                 <Link
                   style={currentTab(history, "/admin/dashboard")}
-                  className="nav-link"
+                  className="nav-link border-0"
                   to="/admin/dashboard"
                 >
-                  <span className="hover">Admin</span>
+                  <span className="hover">Dashboard</span>
                 </Link>
               </li>
             )}
 
             <li className="nav-item">
-              <Link className="nav-link" to="#">
+              <Link className="nav-link border-0" to="#">
                 <span
-                  className="hover"
+                  className="hover text-warning"
                   onClick={() => (signout(), history.history.push("/"))}
                 >
                   Sign out
                 </span>
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                style={currentTab(history, "/cart")}
+                className="nav-link border-0"
+                to="/cart"
+              >
+                <span className="hover">Cart</span>
               </Link>
             </li>
           </>
@@ -66,7 +80,7 @@ function Menu(history) {
             <li className="nav-item">
               <Link
                 style={currentTab(history, "/signin")}
-                className="nav-link"
+                className="nav-link border-0"
                 to="/signin"
               >
                 <span className="hover">Sign in</span>
@@ -75,7 +89,7 @@ function Menu(history) {
             <li className="nav-item">
               <Link
                 style={currentTab(history, "/signup")}
-                className="nav-link"
+                className="nav-link border-0"
                 to="/signup"
               >
                 <span className="hover">Sign up</span>
@@ -83,16 +97,6 @@ function Menu(history) {
             </li>
           </>
         )}
-
-        <li className="nav-item">
-          <Link
-            style={currentTab(history, "/cart")}
-            className="nav-link"
-            to="/cart"
-          >
-            <span className="hover">Cart</span>
-          </Link>
-        </li>
       </ul>
     </div>
   );
