@@ -63,12 +63,6 @@ function AddCategory() {
           >
             Create
           </button>
-          <Link
-            className="mt-2 btn btn-info text-dark border-0 rounded mx-3"
-            to="/admin/dashboard"
-          >
-            Back
-          </Link>
         </div>
       </form>
     </>
@@ -77,9 +71,15 @@ function AddCategory() {
   return (
     <Base
       title="Create a new Category here"
-      description="Create new categories"
+      description=""
       className="container rounded col-md-4 mt-5 p-4 bg-dark border border-3 border-secondary"
     >
+      <Link
+        className="btn btn-outline-info rounded border-2"
+        to="/admin/dashboard"
+      >
+        Back
+      </Link>
       <div className="row rounded">
         <div className="col-md-8 offset-md-2">
           {successMessage()}

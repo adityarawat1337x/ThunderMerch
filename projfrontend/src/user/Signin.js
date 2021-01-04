@@ -70,35 +70,33 @@ function Signin() {
   const onSubmit = (e) => {
     e.preventDefault();
     setuserData({ ...userData, error: false, loading: true });
-    setTimeout(() => {
-      // wait for loading for 1 sec
-      signin({ email, password })
-        .then((data) => {
-          if (data.Error) {
+    // wait for loading for 1 sec
+    signin({ email, password })
+      .then((data) => {
+        if (data.Error) {
+          setuserData({
+            email: "",
+            password: "",
+            error: data.Error,
+            loading: false,
+            didRedirect: false,
+          });
+          // console.log(userData);
+        } else {
+          saveToken(data, () => {
             setuserData({
               email: "",
               password: "",
-              error: data.Error,
+              error: "",
+              didRedirect: true,
               loading: false,
-              didRedirect: false,
             });
-            console.log(userData);
-          } else {
-            saveToken(data, () => {
-              setuserData({
-                email: "",
-                password: "",
-                error: "",
-                didRedirect: true,
-                loading: false,
-              });
-            });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, 1000);
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // sign in form

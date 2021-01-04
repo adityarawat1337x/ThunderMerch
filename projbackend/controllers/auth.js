@@ -9,33 +9,34 @@ const validator = function (req, res) {
   const error = validationResult(req);
 
   if (!error.isEmpty()) {
-    return res.status(422).json({
+    res.status(422).json({
       Errors: error.errors.map((error) => {
         return { Error: error.param, Err: error.msg };
       }),
     });
   }
   // done checking
-  return false;
+  else return true;
 };
 
 // signup control
 exports.signup = (req, res) => {
   // check validation
-  validator(req, res);
-  // user database creating
-  const user = new User(req.body);
+  if (validator(req, res)) {
+    // user database creating
+    const user = new User(req.body);
 
-  user.save((err, userObj) => {
-    // error checking
-    if (err)
-      return res.status(400).json({
-        Rrror: "Not able to save user in db",
-        Err: err,
-      });
-    console.log(userObj);
-    return res.json(`${userObj.firstname} database created`);
-  });
+    user.save((err, userObj) => {
+      // error checking
+      if (err)
+        return res.status(400).json({
+          Rrror: "Not able to save user in db",
+          Err: err,
+        });
+      console.log(userObj);
+      return res.json(`${userObj.firstname} database created`);
+    });
+  }
 };
 
 // signout control

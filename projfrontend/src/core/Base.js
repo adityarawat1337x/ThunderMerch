@@ -9,7 +9,7 @@ function Base({
   children,
 }) {
   return (
-    <div>
+    <>
       <Menu />
       <div className="container-fluid">
         <div className="jumbotron bg-dark text-white text-center">
@@ -18,11 +18,14 @@ function Base({
         </div>
         <div className={className}>{children}</div>
       </div>
-
-      <footer className="footer bg-dark mg-auto py-3">
+      <footer className="footer bg-dark mt-2">
         <div className="container-fluid bg-secondary text-white text-center py-3">
-          <h4>Feel free to contact us.</h4>
-          <button className="btn btn-info">Contact Us</button>
+          <div className="row">
+            <h4 className="col-6">Feel free to contact us for any query.</h4>
+            <span className="col-6">
+              <button className="btn btn-info">Contact Us</button>
+            </span>
+          </div>
         </div>
         <div className="container">
           <span className="text-muted">
@@ -33,7 +36,7 @@ function Base({
           </span>
         </div>
       </footer>
-    </div>
+    </>
   );
 }
 

@@ -10,11 +10,6 @@ var userSchema = new mongoose.Schema(
       maxlength: 12,
       trim: true,
     },
-    lastname: {
-      type: String,
-      maxlength: 32,
-      trim: true,
-    },
     email: {
       type: String,
       required: true,

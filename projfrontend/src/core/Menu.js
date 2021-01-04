@@ -15,7 +15,7 @@ function Menu(history) {
 
   return (
     <div>
-      <ul className="nav bg-dark nav-tabs justify-content-end border-0 mt-3 mx-3 ">
+      <ul className="nav bg-dark nav-tabs justify-content-center border-0 mt-3 mx-3 ">
         <li className="nav-item">
           <Link
             style={currentTab(history, "/")}
