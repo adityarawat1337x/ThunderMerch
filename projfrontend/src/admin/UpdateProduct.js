@@ -2,15 +2,18 @@ import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { checkToken } from "../auth/helper";
 import Base from "../core/Base";
-import { getAllCategories, createAProduct } from "./helper/AdminApiCall";
+import {
+  getAProduct,
+  getAllCategories,
+  updateProduct,
+} from "./helper/AdminApiCall";
 
-function AddProduct() {
+function UpdateProduct({ match }) {
   const [values, setValues] = useState({
     name: "",
     description: "",
-    stock: "",
-    size: "",
     price: "",
+    stock: "",
     photo: "",
     categories: [],
     category: "",
@@ -22,7 +25,7 @@ function AddProduct() {
   });
 
   useEffect(() => {
-    preLoad();
+    preLoad(match.params.productId);
   }, []);
 
   const {
@@ -39,17 +42,32 @@ function AddProduct() {
     formData,
   } = values;
 
-  const preLoad = () => {
-    getAllCategories()
+  const preLoad = (productId) => {
+    getAProduct(productId)
       .then((data) => {
+        console.log(data);
         if (data.Error) {
+          console.log(data);
           setValues({ ...values, error: data });
         } else {
-          setValues({
-            ...values,
-            categories: data,
-            formData: new FormData(),
-          });
+          getAllCategories()
+            .then((cate) => {
+              if (cate.Error) {
+                setValues({ ...values, error: cate });
+              } else {
+                setValues({
+                  ...values,
+                  name: data.name,
+                  description: data.description,
+                  price: data.price,
+                  stock: data.stock,
+                  size: data.size,
+                  categories: cate,
+                  formData: new FormData(),
+                });
+              }
+            })
+            .catch();
         }
       })
       .catch();
@@ -63,10 +81,11 @@ function AddProduct() {
 
   const onSubmit = (event) => {
     event.preventDefault();
+
     const { user, token } = checkToken();
     setValues({ ...values, error: "", loading: true });
-    console.log("sending...", formData, values);
-    createAProduct(user._id, token, formData)
+
+    updateProduct(user._id, token, formData, match.params.productId)
       .then((data) => {
         if (data.Error) {
           setValues({ ...values, error: data.Error });
@@ -192,14 +211,14 @@ function AddProduct() {
         onClick={onSubmit}
         className="btn btn-info rounded my-2"
       >
-        Create
+        Update
       </button>
     </form>
   );
 
   return (
     <Base
-      title="Create new products"
+      title="Update product"
       description=""
       className="container rounded mt-5 p-4 bg-dark border border-3 border-secondary"
     >
@@ -220,4 +239,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default UpdateProduct;

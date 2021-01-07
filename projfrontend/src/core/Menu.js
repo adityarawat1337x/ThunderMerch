@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import { checkToken } from "../auth/helper";
 import { signout } from "../auth/helper/index";
+import logo from "../logo2.jpg";
 
 import "../styles.css";
 
@@ -14,8 +15,21 @@ function Menu(history) {
   };
 
   return (
-    <div>
-      <ul className="nav bg-dark nav-tabs justify-content-center border-0 mt-3 mx-3 ">
+    <>
+      <div>
+        <img
+          src={logo}
+          width="50"
+          height="50"
+          className="fixed-top mx-4 my-4"
+          style={{ borderRadius: "50px", zIndex: 3 }}
+          alt=""
+        />
+      </div>
+      <ul
+        style={{ zIndex: 2 }}
+        className="nav fixed-top bg-dark nav-tabs justify-content-end border-0 mt-3 mx-3 mb-5 "
+      >
         <li className="nav-item">
           <Link
             style={currentTab(history, "/")}
@@ -98,7 +112,10 @@ function Menu(history) {
           </>
         )}
       </ul>
-    </div>
+      {/* bug fix  for menubar */}
+      <div className="fixed-top py-4 mb-5 bg-dark" style={{ zIndex: 1 }}></div>
+      <div className="py-4 mb-5" style={{ zIndex: 0 }}></div>
+    </>
   );
 }
 

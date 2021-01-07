@@ -20,14 +20,17 @@ function AdminDashboard() {
               Create Catgories
             </Link>
           </li>
+          <li className="list-group-item bg-dark  border border-dark">
+            <Link
+              to="/admin/categories"
+              className="nav-link text-info border-outline-info"
+            >
+              Manage Categories
+            </Link>
+          </li>
           <li className="list-group-item bg-dark  border border-dark ">
             <Link to="/admin/create/product" className="nav-link text-info ">
               Create Products
-            </Link>
-          </li>
-          <li className="list-group-item bg-dark  border border-dark">
-            <Link to="/admin/categories" className="nav-link text-info ">
-              Manage Categories
             </Link>
           </li>
           <li className="list-group-item bg-dark  border border-dark">

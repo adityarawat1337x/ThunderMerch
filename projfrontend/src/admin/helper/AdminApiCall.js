@@ -28,6 +28,18 @@ export const getAllCategories = () => {
     .catch((error) => error);
 };
 
+export const deleteCategory = (categoryId, userId, token) => {
+  return fetch(`${API}/category/${categoryId}/${userId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .catch((error) => error);
+};
+
 //products api
 
 // get all products
